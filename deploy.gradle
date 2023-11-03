@@ -69,13 +69,13 @@ publishing {
     repositories {
         maven {
             credentials {
-                username System.getenv('OSSRH_USER')
-                password System.getenv('OSSRH_PASS')
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
             if (project.ext.isReleaseVersion) {
-                url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+                url "https://maven.pkg.github.com/kwangil77/grpc-spring"
             } else {
-                url "https://oss.sonatype.org/content/repositories/snapshots"
+                url "https://maven.pkg.github.com/kwangil77/grpc-spring"
             }
         }
     }
